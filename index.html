@@ -12,22 +12,29 @@
 </head>
 <body>
     <div id="root">
-        <div class="container p-5">
-            <div class="d-flex row row-cols justify-content-center border border-primary">
-                <div class="d-flex col border border-primary justify-content-end">
-                       <button @click="slidesxPic" class="bg-light">
-                        <i class="fa-solid fa-angle-left"></i>
-                       </button>
+        <div class="container-fluid p-5">
+            <div class="d-flex row justify-content-center">
+                <div class="d-flex col-2 justify-content-end vertical-align-middle">
+                    <div class="align-items-center align-content-center">
+                        <button @click="slidesxPic" class="bg-light">
+                            <i class="fa-solid fa-angle-left"></i>
+                           </button>
+                      </div>
                 </div> 
-                <div class="d-flex col-10 border border-primary justify-content-center">
-                        <img :src="element.media" class="img-fluid" alt="">
+                <div class="d-flex col-8 justify-content-center">
+                        <img :src="photos[counterPhoto]" class="img-fluid" alt="">
                 </div>
-                <div class="d-flex col border border-primary justify-content-start">
+                <div class="d-flex col-2 justify-content-start">
+                      <div class="align-items-center align-content-center">
                         <button @click="slidedxPic" class="bg-light">
                             <i class="fa-solid fa-angle-right"></i>
                         </button>
+                      </div>
                 </div>  
             </div>
+            <div class="d-flex justify-content-center align-items-center mt-5"></div>
+            <i class="fa-solid fa-circle mx-3" :class="(index = counterPhoto) ? 'text-primary': ''" 
+            v-for="(photo, index) in photos" :key="index" @click="clickD(index)" ></i>
         </div>
     </div>
 
