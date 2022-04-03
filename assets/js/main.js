@@ -1,39 +1,39 @@
-var example1 = new Vue({
-    el: '#root',
-    data: {
-        photos: [
-               'https://source.unsplash.com/random/800x500/?scifi',
-               'https://source.unsplash.com/random/800x500/?dog',
-               'https://source.unsplash.com/random/800x500/?cat',
-               'https://source.unsplash.com/random/800x500/?fantasy',
+var app = new Vue (
+    {
+        el:'#root',
+        data: {
+            toslide:[
+                'https://source.unsplash.com/random/400x400/?scifi',
+                'https://source.unsplash.com/random/400x400/?space',
+                'https://source.unsplash.com/random/400x400/?planet',
+                'https://source.unsplash.com/random/400x400/?abyss',
             ],
-        counterPhoto: 0, 
+            counter: 0,
         },
         created(){
-            this.timerNextPhoto();
+            this.sliderTimer()
         },
-    methods:{
-        prevP: function(){
-            this.counterPhoto -= 1;
-            if(this.counterPhoto < 0){
-                this.counterPhoto = this.photos.lenght -1;
+        methods: {
+            slideNext: function(){
+                this.counter += 1;
+                if (this.counter > (this.toslide.length -1)){
+                    this.counter = 0;
+                }
+            },
+            slidePrev: function(){
+                this.counter -= 1;
+                if (this.counter < 0){
+                    this.counter = (this.toslide.length -1);
+                }
+            },
+            sliderTimer: function(){
+                setInterval(() =>{
+                    this.slideNext();
+                }, 3000);
+            },
+            clickDot: function(indexDot){
+                this.counter = indexDot;
             }
-        },
-        nextP: function(){
-            this.counterPhoto += 1;
-            if(this.counterPhoto > (this.photos.lenght -1)){
-                this.counterPhoto = 0;
-            }
-        },
-        timerNextPhoto: function(){
-            setInterval(() => {
-                this.nextP();
-            }, 3000);
-        },
-        clickD: function(indexPic){
-            console.log(indexPic );
-            this.counterPhoto = indexPic;
         }
     }
-  }
 )

@@ -12,29 +12,29 @@
 </head>
 <body>
     <div id="root">
-        <div class="container-fluid p-5">
-            <div class="d-flex row justify-content-center">
-                <div class="d-flex col-2 justify-content-end vertical-align-middle">
-                    <div class="align-items-center align-content-center">
-                        <button @click="slidesxPic" class="bg-light">
-                            <i class="fa-solid fa-angle-left"></i>
-                           </button>
-                      </div>
-                </div> 
-                <div class="d-flex col-8 justify-content-center">
-                        <img :src="photos[counterPhoto]" class="img-fluid" alt="">
+     <div class="container">
+           <div class="row justify-content-center align-items-center m-5">
+               <!-- Freccia slide sinistra -->
+               <div class="d-flex col-2 justify-content-end align-self-auto">
+                    <i class="fa-solid fa-angle-left my_mouse_ch" v-on:click="slidePrev"></i>
+               </div>
+               <!-- Immagini per lo slide -->
+               <div class="d-flex col-8">
+                   <img :src="toslide[counter]" alt="" class="m" width="800vw">
+               </div>
+               <!-- Freccia di destra -->
+               <div class="d-flex col-2 justify-content-start align-self-auto">
+                    <i class="fa-solid fa-angle-right my_mouse_ch" v-on:click="slideNext"></i>    
+               </div>
+           </div>
+           <!-- Punti di slide -->
+           <div class="d-flex container-fluid justify-content-center">
+            <div class="row-sm-2 flex-row justify-content-center bg-dark p-2 rounded-1 align-items-center">
+                <div class="col text-center">
+                 <i class="fa-solid fa-circle mx-3 text-primary" :class="(index ==  counter) ? 'text-danger' : ''" v-for="(slides, index) in toslide" v-on:click="clickDot(index)"></i>
                 </div>
-                <div class="d-flex col-2 justify-content-start">
-                      <div class="align-items-center align-content-center">
-                        <button @click="slidedxPic" class="bg-light">
-                            <i class="fa-solid fa-angle-right"></i>
-                        </button>
-                      </div>
-                </div>  
             </div>
-            <div class="d-flex justify-content-center align-items-center mt-5"></div>
-            <i class="fa-solid fa-circle mx-3" :class="(index = counterPhoto) ? 'text-primary': ''" 
-            v-for="(photo, index) in photos" :key="index" @click="clickD(index)" ></i>
+           </div>
         </div>
     </div>
 
